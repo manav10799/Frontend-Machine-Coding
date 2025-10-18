@@ -1,0 +1,23 @@
+{
+  "name": "frontend-machine-coding",
+  "version": "1.0.0",
+  "description": "Mono Repo For the Frontend Machine Coding Practice",
+  "main": "index.js",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manav10799/Frontend-Machine-Coding.git"
+  },
+  "author": "Manav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manav10799/Frontend-Machine-Coding/issues"
+  },
+  "homepage": "https://github.com/manav10799/Frontend-Machine-Coding#readme"
+}
