@@ -3,17 +3,29 @@ import React, { useEffect, useRef, useState } from "react";
 const OtpInput = ({ length }) => {
   const [otp, setOtp] = useState(new Array(length).fill(""));
   const inputRef = useRef([]);
+  //Checking if its number only
+  const checkValid = (value) => {
+    let numberRegex = /^\d+$/;
+    return numberRegex.test(value);
+  };
+
+  //Changing the input value state
   const addInputVal = (value, i) => {
     const newOtp = [...otp];
     newOtp[i] = value;
     setOtp(newOtp);
   };
+
+  //For Typing the input and changing the focus
   const handleInputChange = (e, i) => {
+    if (!checkValid(inputRef.current[i].value)) return;
     addInputVal(inputRef.current[i].value, i);
     if (i < length - 1) {
       inputRef.current[i + 1].focus();
     }
   };
+
+  //while removing the input value (delete key)
   const handleKeyDown = (e, i) => {
     if (e.keyCode === 8) {
       addInputVal("", i);
@@ -23,19 +35,23 @@ const OtpInput = ({ length }) => {
       e.preventDefault();
     }
   };
+
+  //Handling paste scenerios by looping the values and adding to individual input
   const handlePaste = (e) => {
     e.preventDefault();
     const newOtp = [...otp];
-    let copiedValue = e.clipboardData.getData("text");
-    copiedValue.split("").map((cp, i) => (newOtp[i] = cp));
-    setOtp(newOtp);
-    inputRef.current[copiedValue.length - 1].focus();
+    let copiedValue = e.clipboardData.getData("text").slice(0, length);
+    if (checkValid(copiedValue)) {
+      copiedValue.split("").map((cp, i) => (newOtp[i] = cp));
+      setOtp(newOtp);
+      inputRef.current[copiedValue.length - 1].focus();
+    }
   };
 
   useEffect(() => {
     inputRef.current[0].focus();
-    1234;
   }, []);
+
   return (
     <div>
       <h1>Type/Paste OTP</h1>
