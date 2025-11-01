@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "start:otp-input": "npm run start --workspace=apps/OTP-input",
+    "start:data-table": "npm run start --workspace=apps/Data-Table",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
